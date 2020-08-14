@@ -22,10 +22,10 @@ int main()
         scanf("%d *[^\n]", &(stu + i)->rollNumber); // or use fseek(stdin,0,SEEK_END);
         fgets((stu + i)->name, sizeof((stu + i)->name), stdin);
     }
-    printf("Entered details\n");
+    printf("Entered details\n\n");
     for (int i = 0; i < size; i++)
     {
-        printf("Entered Roll Number = %d and Name = %s \n", (stu + i)->rollNumber, (stu + i)->name);
+        printf("Entered Roll Number = %d and Name = %s", (stu + i)->rollNumber, (stu + i)->name);
     }
     printf("Do You want to add more students!\n\t1)Yess!!!!\n\t2)NOO:(\n");
     int choice;
@@ -38,21 +38,28 @@ int main()
     }
     else
     {
-        int newSize;
+        int extraSize, newSize;
         printf("Enter the number of Student\n");
-        scanf("%d", &newSize);
+        scanf("%d", &extraSize);
+        newSize = size + extraSize;
         stu = realloc(stu, newSize);
-        printf("Enter the details of %d students.\n", size);
-        for (int i = 0; i < size; i++)
+        printf("Enter the details of %d students.\n", extraSize);
+        for (int i = size; i < newSize; i++)
         {
             printf("Enter Roll Number and Name\n");
             scanf("%d *[^\n]", &(stu + i)->rollNumber); // or use fseek(stdin,0,SEEK_END);
             fgets((stu + i)->name, sizeof((stu + i)->name), stdin);
         }
-        printf("Entered details\n");
-        for (int i = 0; i < size; i++)
+        printf("Added student details\n\n");
+        for (int i = size; i < newSize; i++)
         {
-            printf("Entered Roll Number = %d and Name = %s \n", (stu + i)->rollNumber, (stu + i)->name);
+            printf("Entered Roll Number = %d and Name = %s", (stu + i)->rollNumber, (stu + i)->name);
+        }
+        printf("\n\n");
+        printf("Total Entered details\n\n");
+        for (int i = 0; i < newSize; i++)
+        {
+            printf("Entered Roll Number = %d and Name = %s", (stu + i)->rollNumber, (stu + i)->name);
         }
     }
     printf("*************************THNKS FOR USING*************************************");
